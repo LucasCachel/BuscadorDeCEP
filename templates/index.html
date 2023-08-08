@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buscador de CEP</title>
+    <style>
+        body {
+            background: url("/static/certa1.jpg"), url("/static/Brasil-de-cima.jpg"), url("/static/certa2.jpeg"), url("/static/certa3.jpg"), url("/static/UnequalScenesBR12.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            animation: changeBackground 30s infinite;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        @keyframes changeBackground {
+            0%, 100% {
+                background-image: url("/static/certa1.jpg");
+            }
+            20% {
+                background-image: url("/static/Brasil-de-cima.jpg");
+            }
+            40% {
+                background-image: url("/static/certa2.jpeg");
+            }
+            60% {
+                background-image: url("/static/certa3.jpg");
+            }
+            80% {
+                background-image: url("/static/UnequalScenesBR12.jpg");
+            }
+        }
+
+        h1 {
+            margin-top: 50px;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            margin-left: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #endereco-info {
+            margin-top: 50px;
+        }
+
+        #endereco-info p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <h1>Buscador de CEP</h1>
+    <form method="post" action="/">
+        <input type="text" name="cep" id="cep" required placeholder="Digite o CEP">
+        <input type="submit" value="Buscar">
+    </form>
+
+    {% if endereco %}
+        <div id="endereco-info">
+            <h2>Informações do endereço:</h2>
+            <p><strong>CEP:</strong> {{ endereco.cep }}</p>
+            <p><strong>Logradouro:</strong> {{ endereco.logradouro }}</p>
+            <p><strong>Complemento:</strong> {{ endereco.complemento }}</p>
+            <p><strong>Bairro:</strong> {{ endereco.bairro }}</p>
+            <p><strong>Localidade:</strong> {{ endereco.localidade }}</p>
+            <p><strong>UF:</strong> {{ endereco.uf }}</p>
+            <p><strong>IBGE:</strong> {{ endereco.ibge }}</p>
+            <p><strong>GIA:</strong> {{ endereco.gia }}</p>
+            <p><strong>DDD:</strong> {{ endereco.ddd }}</p>
+            <p><strong>SIAFI:</strong> {{ endereco.siafi }}</p>
+        </div>
+    {% endif %}
+</body>
+</html>
